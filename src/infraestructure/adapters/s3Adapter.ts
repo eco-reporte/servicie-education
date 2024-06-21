@@ -4,20 +4,23 @@ export class S3Adapter {
     private s3: AWS.S3;
 
     constructor() {
-        this.s3 = new AWS.S3({
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-            region: process.env.AWS_REGION
-        });
+        this.s3 = new AWS.S3();
     }
 
-    async uploadFile(file: any) {
+    async uploadFile(bucket: string, key: string, body: Buffer | Uint8Array | Blob | string) {
         const params = {
-            Bucket: process.env.S3_BUCKET_NAME,
-            Key: file.originalname,
-            Body: file.buffer
+            Bucket: bucket,
+            Key: key,
+            Body: body
         };
+        return this.s3.upload(params).promise();
+    }
 
-        return await this.s3.upload(params).promise();
+    async getFile(bucket: string, key: string) {
+        const params = {
+            Bucket: bucket,
+            Key: key
+        };
+        return this.s3.getObject(params).promise();
     }
 }

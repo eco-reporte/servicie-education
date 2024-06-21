@@ -1,6 +1,3 @@
 export class ContentUploadedEvent {
-    constructor(
-        public contentId: number,
-        public s3Url: string
-    ) {}
+    constructor(public readonly contentId: number) {}
 }

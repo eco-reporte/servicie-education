@@ -1,6 +1,10 @@
-import { EducationalContentService } from "../services/educationalContent";
+import { EducationalContentRepository } from '../../domain/repositories/educationalContentRepository';
+import { EducationalContent } from "../../domain/entities/educationalContent";
 
-export const getEducationalContent = async (id: number) => {
-    const educationalContentService = new EducationalContentService();
-    return await educationalContentService.get(id);
-};
+export class GetEducationalContent {
+    constructor(private educationalContentRepository: EducationalContentRepository) {}
+
+    async execute(id: number): Promise<EducationalContent | null> {
+        return this.educationalContentRepository.getById(id);
+    }
+}

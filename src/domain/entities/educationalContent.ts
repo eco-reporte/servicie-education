@@ -1,7 +1,8 @@
 export class EducationalContent {
-    constructor(
-        public title: string,
-        public content: string,
-        public type: string
-    ) {}
+    id!: number;
+    title!: string;
+    description!: string;
+    content!: string;
+    createdAt!: Date;
+    updatedAt!: Date;
 }

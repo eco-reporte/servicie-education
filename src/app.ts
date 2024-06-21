@@ -1,13 +1,37 @@
-import { Router } from 'express';
-import { EducationalContentController } from './interfaces/controllers/educationalContentController';
-import { upload } from './config/multer';
+import express from 'express';
+import sequelize from './infrastructure/config/database';
+import educationalContentRoutes from './interfaces/routes/educationalContentRoutes';
 
-const router = Router();
-const controller = new EducationalContentController();
+// Crear una instancia de Express
+const app = express();
 
-router.post('/contents', upload.single('file'), controller.create);
-router.get('/contents/:id', controller.get);
-router.put('/contents/:id', controller.update);
-router.delete('/contents/:id', controller.delete);
+// Middleware para parsear JSON
+app.use(express.json());
 
-export { router as educationalContentRoutes };
+// Rutas
+app.use('/educational-content', educationalContentRoutes);
+
+// Sincronizar modelos y establecer conexión a la base de datos
+async function startServer() {
+    try {
+        await sequelize.authenticate();
+        console.log('Conexión a la base de datos establecida correctamente.');
+
+        // Sincronizar los modelos
+        await sequelize.sync({ force: true }); // `force: true` elimina las tablas existentes y crea nuevas (no usar en producción)
+        console.log('Modelos sincronizados correctamente.');
+
+        // Iniciar el servidor
+        const PORT = process.env.PORT || 3000;
+        app.listen(PORT, () => {
+            console.log(`Servidor corriendo en el puerto ${PORT}`);
+        });
+    } catch (error) {
+        console.error('Error al conectar a la base de datos o sincronizar los modelos:', error);
+    }
+}
+
+// Iniciar la aplicación
+startServer();
+
+export default app;

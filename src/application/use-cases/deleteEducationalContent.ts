@@ -1,6 +1,10 @@
-import { EducationalContentService } from "../services/educationalContent";
+import { EducationalContentRepository } from "../../domain/repositories/educationalContentRepository";
 
-export const deleteEducationalContent = async (id: number) => {
-    const educationalContentService = new EducationalContentService();
-    return await educationalContentService.delete(id);
-};
+
+export class DeleteEducationalContent {
+    constructor(private educationalContentRepository: EducationalContentRepository) {}
+
+    async execute(id: number): Promise<void> {
+        await this.educationalContentRepository.delete(id);
+    }
+}
