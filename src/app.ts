@@ -26,7 +26,7 @@ async function startServer() {
             console.log(`Servidor corriendo en el puerto ${PORT}`);
         });
     } catch (error) {
-        console.error('Error al conectar a la base de datos o sincronizar los modelos:', error);
+        console.error('Error al conectar a la base de datos:', error);
     }
 }
 
