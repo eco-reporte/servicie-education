@@ -88,6 +88,16 @@ class EducationalContentController {
             res.status(500).json({ error: (error as Error).message });
         }
     }
+
+    async getAll(req: Request, res: Response) {
+        try {
+            const contents = await educationalContentService.getAll();
+            res.status(200).json(contents);
+        } catch (error: unknown) {
+            console.error('Error in getAll method:', error);
+            res.status(500).json({ error: (error as Error).message });
+        }
+    }
 }
 
 export default new EducationalContentController();

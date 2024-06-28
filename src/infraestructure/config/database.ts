@@ -5,7 +5,7 @@ const sequelize = new Sequelize({
     host: 'localhost',
     port: 3306,
     username: 'root',
-    password: '',
+    password: '211218',
     database: 'db_eco_reporte',
     logging: false // Puedes habilitar o deshabilitar el logging
 });

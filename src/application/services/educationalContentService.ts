@@ -27,4 +27,9 @@ export class EducationalContentService {
     async delete(id: number): Promise<void> {
         return this.repository.delete(id);
     }
+
+    async getAll(): Promise<EducationalContent[]> {
+        return this.repository.getAll();
+    }
+
 }

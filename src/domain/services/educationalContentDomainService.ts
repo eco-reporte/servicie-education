@@ -19,4 +19,8 @@ export class EducationalContentDomainService {
     async delete(id: number) {
         return this.educationalContentRepository.delete(id);
     }
+
+    async getAll() {
+        return this.educationalContentRepository.getAll();
+    }
 }

@@ -4,8 +4,8 @@ import educationalContentController from '../controllers/educationalContentContr
 const router = Router();
 
 router.post('/', educationalContentController.create);
-router.get('/:id', educationalContentController.get);
 router.put('/:id', educationalContentController.update);
 router.delete('/:id', educationalContentController.delete);
+router.get('/all', educationalContentController.getAll);
 
 export default router;

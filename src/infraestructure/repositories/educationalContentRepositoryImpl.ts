@@ -16,6 +16,11 @@ export class EducationalContentRepositoryImpl implements EducationalContentRepos
         return content ? (content.toJSON() as EducationalContent) : null;
     }
 
+    async getAll(): Promise<EducationalContent[]> {
+        const contents = await EducationalContent.findAll();
+        return contents.map(content => content.toJSON() as EducationalContent);
+    }
+
     async update(id: number, contentData: Partial<EducationalContent>): Promise<EducationalContent | null> {
         const content = await EducationalContent.findByPk(id);
         if (content) {

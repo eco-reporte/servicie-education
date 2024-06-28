@@ -21,9 +21,11 @@ async function startServer() {
         console.log('Modelos sincronizados correctamente.');
 
         // Iniciar el servidor
-        const PORT = process.env.PORT || 3000;
-        app.listen(PORT, () => {
-            console.log(`Servidor corriendo en el puerto ${PORT}`);
+        const PORT = parseInt(process.env.PORT || '3005', 10);
+        const IP_ADDRESS = '15.0.11.104'; // Cambiar por la IP deseada
+        
+        app.listen(PORT, IP_ADDRESS, () => {
+            console.log(`Servidor corriendo en http://${IP_ADDRESS}:${PORT}`);
         });
     } catch (error) {
         console.error('Error al conectar a la base de datos:', error);

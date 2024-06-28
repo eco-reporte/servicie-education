@@ -5,4 +5,5 @@ export interface EducationalContentRepository {
     getById(id: number): Promise<EducationalContent | null>;
     update(id: number, contentData: Partial<EducationalContent>): Promise<EducationalContent | null>;
     delete(id: number): Promise<void>;
+    getAll(): Promise<EducationalContent[]>;
 }
