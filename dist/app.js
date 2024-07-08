@@ -30,10 +30,9 @@ function startServer() {
             // Sincronizar los modelos
             console.log('Modelos sincronizados correctamente.');
             // Iniciar el servidor
-            const PORT = parseInt(process.env.PORT || '3005', 10);
-            const IP_ADDRESS = '15.0.11.104'; // Cambiar por la IP deseada
-            app.listen(PORT, IP_ADDRESS, () => {
-                console.log(`Servidor corriendo en http://${IP_ADDRESS}:${PORT}`);
+            const PORT = process.env.PORT || 3002;
+            app.listen(PORT, () => {
+                console.log(`Servidor corriendo en el puerto ${PORT}`);
             });
         }
         catch (error) {
