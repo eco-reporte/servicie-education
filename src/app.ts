@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 
 // Rutas
-app.use('/educational-content', educationalContentRoutes);
+app.use('/educational', educationalContentRoutes);
 
 // Sincronizar modelos y establecer conexión a la base de datos
 async function startServer() {

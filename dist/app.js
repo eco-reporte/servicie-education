@@ -20,7 +20,7 @@ const app = (0, express_1.default)();
 // Middleware para parsear JSON
 app.use(express_1.default.json());
 // Rutas
-app.use('/educational-content', educationalContentRoutes_1.default);
+app.use('/educational', educationalContentRoutes_1.default);
 // Sincronizar modelos y establecer conexión a la base de datos
 function startServer() {
     return __awaiter(this, void 0, void 0, function* () {
