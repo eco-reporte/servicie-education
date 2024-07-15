@@ -5,7 +5,7 @@ import { EducationalContent } from '../../domain/entities/educationalContent';
 class EducationalContentController {
     async create(req: Request, res: Response) {
         try {
-            const { title, description, content } = req.body;
+            const { title, description, content, imageUrl } = req.body;
             
             if (!title || !description || !content) {
                 return res.status(400).json({ error: 'Title, description, and content are required' });
@@ -14,7 +14,8 @@ class EducationalContentController {
             const contentData: Omit<EducationalContent, 'id' | 'createdAt' | 'updatedAt'> = { 
                 title, 
                 description, 
-                content 
+                content,
+                imageUrl
             };
             
             const createdContent = await educationalContentService.create(contentData);

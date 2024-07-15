@@ -9,7 +9,7 @@ const educationalContentController_1 = __importDefault(require("../controllers/e
 const security_1 = require("../../middleware/security"); // Importa el middleware de autenticación
 const router = (0, express_1.Router)();
 // Aplicar el middleware de autenticación JWT a las rutas protegidas
-router.post('/', security_1.authMiddleware, educationalContentController_1.default.create);
+router.post('/create', security_1.authMiddleware, educationalContentController_1.default.create);
 router.put('/:id', security_1.authMiddleware, educationalContentController_1.default.update);
 router.delete('/:id', security_1.authMiddleware, educationalContentController_1.default.delete);
 router.get('/all', security_1.authMiddleware, educationalContentController_1.default.getAll);

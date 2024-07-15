@@ -35,6 +35,10 @@ EducationalContent.init({
         type: sequelize_1.DataTypes.DATE,
         allowNull: false,
         defaultValue: sequelize_1.DataTypes.NOW
+    },
+    imageUrl: {
+        type: sequelize_1.DataTypes.TEXT,
+        allowNull: true
     }
 }, {
     sequelize: database_1.default,

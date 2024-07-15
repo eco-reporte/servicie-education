@@ -14,14 +14,15 @@ class EducationalContentController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { title, description, content } = req.body;
+                const { title, description, content, imageUrl } = req.body;
                 if (!title || !description || !content) {
                     return res.status(400).json({ error: 'Title, description, and content are required' });
                 }
                 const contentData = {
                     title,
                     description,
-                    content
+                    content,
+                    imageUrl
                 };
                 const createdContent = yield dependencies_1.educationalContentService.create(contentData);
                 res.status(201).json(createdContent);

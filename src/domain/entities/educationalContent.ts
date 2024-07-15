@@ -5,4 +5,5 @@ export class EducationalContent {
     content!: string;
     createdAt!: Date;
     updatedAt!: Date;
+    imageUrl!: string;
 }

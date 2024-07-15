@@ -8,6 +8,7 @@ class EducationalContent extends Model {
     public content!: string;
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
+    public imageUrl!: string;
 }
 
 EducationalContent.init({
@@ -38,6 +39,10 @@ EducationalContent.init({
         type: DataTypes.DATE,
         allowNull: false,
         defaultValue: DataTypes.NOW
+    },
+    imageUrl: {
+        type: DataTypes.TEXT,
+        allowNull: true
     }
 }, {
     sequelize,
