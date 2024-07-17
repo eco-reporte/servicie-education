@@ -19,6 +19,8 @@ const educationalContentRoutes_1 = __importDefault(require("./interfaces/routes/
 const app = (0, express_1.default)();
 // Middleware para parsear JSON
 app.use(express_1.default.json());
+// Multipart/form-data
+app.use(express_1.default.urlencoded({ extended: true }));
 // Rutas
 app.use('/educational', educationalContentRoutes_1.default);
 // Sincronizar modelos y establecer conexión a la base de datos

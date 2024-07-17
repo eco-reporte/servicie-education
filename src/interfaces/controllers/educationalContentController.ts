@@ -2,29 +2,37 @@ import { Request, Response } from 'express';
 import { educationalContentService } from '../../infraestructure/dependencies';
 import { EducationalContent } from '../../domain/entities/educationalContent';
 
+
 class EducationalContentController {
-    async create(req: Request, res: Response) {
-        try {
-            const { title, description, content, imageUrl } = req.body;
-            
-            if (!title || !description || !content) {
-                return res.status(400).json({ error: 'Title, description, and content are required' });
-            }
-            
-            const contentData: Omit<EducationalContent, 'id' | 'createdAt' | 'updatedAt'> = { 
-                title, 
-                description, 
-                content,
-                imageUrl
-            };
-            
-            const createdContent = await educationalContentService.create(contentData);
-            res.status(201).json(createdContent);
-        } catch (error: unknown) {
-            console.error('Error in create method:', error);
-            res.status(500).json({ error: (error as Error).message });
+
+
+// Método create actualizado en educationalContentController.ts
+async create(req: Request, res: Response) {
+    try {
+        const { title, description, content } = req.body;
+        const imageFile = req.file; // Accede al archivo subido
+
+        if (!title || !description || !imageFile) {
+            return res.status(400).json({ error: 'Missing required fields' });
         }
+
+        const imageUrl = imageFile.location; // URL de la imagen subida a S3
+
+        const newContent: Omit<EducationalContent, 'id' | 'createdAt' | 'updatedAt'> = {
+            title,
+            description,
+            content,
+            imageUrl, // Guardar la URL de la imagen en la base de datos
+        };
+
+        const createdContent = await educationalContentService.create(newContent);
+        res.status(201).json(createdContent);
+    } catch (error: unknown) {
+        console.error('Error in create method:', error);
+        res.status(500).json({ error: (error as Error).message });
     }
+}
+
 
     async get(req: Request, res: Response) {
         try {

@@ -8,6 +8,9 @@ const app = express();
 // Middleware para parsear JSON
 app.use(express.json());
 
+// Multipart/form-data
+app.use(express.urlencoded({ extended: true}));
+
 // Rutas
 app.use('/educational', educationalContentRoutes);
 

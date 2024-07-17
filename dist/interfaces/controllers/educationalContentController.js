@@ -11,20 +11,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const dependencies_1 = require("../../infraestructure/dependencies");
 class EducationalContentController {
+    // Método create actualizado en educationalContentController.ts
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { title, description, content, imageUrl } = req.body;
-                if (!title || !description || !content) {
-                    return res.status(400).json({ error: 'Title, description, and content are required' });
+                const { title, description, content } = req.body;
+                const imageFile = req.file; // Accede al archivo subido
+                if (!title || !description || !imageFile) {
+                    return res.status(400).json({ error: 'Missing required fields' });
                 }
-                const contentData = {
+                const imageUrl = imageFile.location; // URL de la imagen subida a S3
+                const newContent = {
                     title,
                     description,
                     content,
-                    imageUrl
+                    imageUrl, // Guardar la URL de la imagen en la base de datos
                 };
-                const createdContent = yield dependencies_1.educationalContentService.create(contentData);
+                const createdContent = yield dependencies_1.educationalContentService.create(newContent);
                 res.status(201).json(createdContent);
             }
             catch (error) {

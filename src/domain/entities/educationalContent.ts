@@ -3,7 +3,7 @@ export class EducationalContent {
     title!: string;
     description!: string;
     content!: string;
+    imageUrl!: string;
     createdAt!: Date;
     updatedAt!: Date;
-    imageUrl!: string;
 }
