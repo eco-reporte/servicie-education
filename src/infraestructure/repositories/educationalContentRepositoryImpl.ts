@@ -36,4 +36,8 @@ export class EducationalContentRepositoryImpl implements EducationalContentRepos
             await content.destroy();
         }
     }
+    async getByCode(code: string): Promise<EducationalContent | null> {
+        const content = await EducationalContent.findOne({ where: { code } });
+        return content ? (content.toJSON() as EducationalContent) : null;
+    }
 }

@@ -4,6 +4,7 @@ export class EducationalContent {
     description!: string;
     content!: string;
     imageUrl!: string;
+    code!: string;
     createdAt!: Date;
     updatedAt!: Date;
 }

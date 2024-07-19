@@ -39,5 +39,10 @@ class EducationalContentDomainService {
             return this.educationalContentRepository.getAll();
         });
     }
+    getByCode(code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.educationalContentRepository.getByCode(code);
+        });
+    }
 }
 exports.EducationalContentDomainService = EducationalContentDomainService;

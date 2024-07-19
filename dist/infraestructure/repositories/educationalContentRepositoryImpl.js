@@ -66,5 +66,11 @@ class EducationalContentRepositoryImpl {
             }
         });
     }
+    getByCode(code) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const content = yield educationalContentModel_1.default.findOne({ where: { code } });
+            return content ? content.toJSON() : null;
+        });
+    }
 }
 exports.EducationalContentRepositoryImpl = EducationalContentRepositoryImpl;

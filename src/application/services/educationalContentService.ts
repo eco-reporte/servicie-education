@@ -32,4 +32,8 @@ export class EducationalContentService {
         return this.repository.getAll();
     }
 
+    async getByCode(code: string): Promise<EducationalContent | null> {
+        return this.repository.getByCode(code);
+    }
+
 }

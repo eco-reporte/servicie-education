@@ -1,14 +1,18 @@
 import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv';
+
+// Cargar variables de entorno
+dotenv.config();
 
 const sequelize = new Sequelize({
-    dialect: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: '211218',
-    database: 'db_eco_reporte',
-    logging: false // Puedes habilitar o deshabilitar el logging
+  dialect: process.env.DB_DIALECT as any, // Asserting non-null and correct type
+  host: process.env.DB_HOST!,
+  port: Number(process.env.DB_PORT), // Convert string to number
+  username: process.env.DB_USERNAME!,
+  password: process.env.DB_PASSWORD!,
+  database: process.env.DB_DATABASE!,
 });
+
 
 // Función para conectar a la base de datos y sincronizar modelos (opcional)
 async function connectDatabase() {

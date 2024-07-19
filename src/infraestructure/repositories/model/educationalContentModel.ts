@@ -9,6 +9,7 @@ class EducationalContent extends Model {
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
     public imageUrl!: string;
+    public code!: string;
 }
 
 EducationalContent.init({
@@ -43,7 +44,12 @@ EducationalContent.init({
     imageUrl: {
         type: DataTypes.TEXT,
         allowNull: true
-    }
+    },
+    code: {
+        type: DataTypes.STRING(255), // Usar VARCHAR(255) en lugar de TEXT
+        allowNull: true
+}
+
 }, {
     sequelize,
     modelName: 'EducationalContent',

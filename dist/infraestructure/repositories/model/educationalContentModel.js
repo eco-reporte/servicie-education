@@ -39,6 +39,10 @@ EducationalContent.init({
     imageUrl: {
         type: sequelize_1.DataTypes.TEXT,
         allowNull: true
+    },
+    code: {
+        type: sequelize_1.DataTypes.STRING(255), // Usar VARCHAR(255) en lugar de TEXT
+        allowNull: true
     }
 }, {
     sequelize: database_1.default,

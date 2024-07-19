@@ -8,16 +8,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
+const dotenv_1 = __importDefault(require("dotenv"));
+// Cargar variables de entorno
+dotenv_1.default.config();
 const sequelize = new sequelize_1.Sequelize({
-    dialect: 'mysql',
-    host: 'localhost',
-    port: 3306,
-    username: 'root',
-    password: '211218',
-    database: 'db_eco_reporte',
-    logging: false // Puedes habilitar o deshabilitar el logging
+    dialect: process.env.DB_DIALECT, // Asserting non-null and correct type
+    host: process.env.DB_HOST,
+    port: Number(process.env.DB_PORT), // Convert string to number
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
 });
 // Función para conectar a la base de datos y sincronizar modelos (opcional)
 function connectDatabase() {

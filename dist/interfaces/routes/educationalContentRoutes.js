@@ -11,4 +11,5 @@ router.post('/create', aws_1.default.single('image'), educationalContentControll
 router.put('/:id', educationalContentController_1.default.update);
 router.delete('/:id', educationalContentController_1.default.delete);
 router.get('/all', educationalContentController_1.default.getAll);
+router.get('/code/:code', educationalContentController_1.default.getByCode);
 exports.default = router;

@@ -9,5 +9,6 @@ router.post('/create',  upload.single('image'), educationalContentController.cre
 router.put('/:id', educationalContentController.update);
 router.delete('/:id', educationalContentController.delete);
 router.get('/all', educationalContentController.getAll);
+router.get('/code/:code', educationalContentController.getByCode);
 
 export default router;

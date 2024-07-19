@@ -23,4 +23,8 @@ export class EducationalContentDomainService {
     async getAll() {
         return this.educationalContentRepository.getAll();
     }
+
+    async getByCode(code: string) {
+        return this.educationalContentRepository.getByCode(code);
+    }
 }

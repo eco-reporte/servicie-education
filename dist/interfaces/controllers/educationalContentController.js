@@ -15,7 +15,7 @@ class EducationalContentController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const { title, description, content } = req.body;
+                const { title, description, content, code } = req.body;
                 const imageFile = req.file; // Accede al archivo subido
                 if (!title || !description || !imageFile) {
                     return res.status(400).json({ error: 'Missing required fields' });
@@ -25,7 +25,8 @@ class EducationalContentController {
                     title,
                     description,
                     content,
-                    imageUrl, // Guardar la URL de la imagen en la base de datos
+                    imageUrl,
+                    code // Guardar la URL de la imagen en la base de datos
                 };
                 const createdContent = yield dependencies_1.educationalContentService.create(newContent);
                 res.status(201).json(createdContent);
@@ -113,6 +114,27 @@ class EducationalContentController {
             }
             catch (error) {
                 console.error('Error in getAll method:', error);
+                res.status(500).json({ error: error.message });
+            }
+        });
+    }
+    getByCode(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const code = req.params.code;
+                if (!code) {
+                    return res.status(400).json({ error: 'Invalid code' });
+                }
+                const content = yield dependencies_1.educationalContentService.getByCode(code);
+                if (content) {
+                    res.status(200).json(content);
+                }
+                else {
+                    res.status(404).json({ error: 'Content not found' });
+                }
+            }
+            catch (error) {
+                console.error('Error in getByCode method:', error);
                 res.status(500).json({ error: error.message });
             }
         });
