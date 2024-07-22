@@ -1,7 +1,7 @@
 // custom.d.ts
 declare namespace Express {
     interface Request {
-        file: MulterS3File;
+        file?: MulterS3File;
     }
 }
 
