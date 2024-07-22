@@ -3,6 +3,12 @@ import { educationalContentService } from '../../infraestructure/dependencies';
 import { EducationalContent } from '../../domain/entities/educationalContent';
 
 
+// Define una interfaz que represente el archivo con la propiedad location
+interface S3File extends Express.Multer.File {
+    location?: string; // La propiedad location puede ser opcional
+}
+
+
 class EducationalContentController {
 
 
